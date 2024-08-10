@@ -8,7 +8,7 @@ library(cowplot)
 
 # data in -----------------------------------------------------------------
 
-df <- read_csv("agg-data.csv")
+df <- read_csv("data/agg-data.csv")
 
 df_win<- df %>% 
   filter(type == "winning")
@@ -18,7 +18,7 @@ df <- df %>%
   mutate(shido = case_when(substr(code, 1, 1) == "P" ~ "Y", 
                            TRUE ~ "N"))
 
-lookup <- read_csv("technique-lookup.csv")
+lookup <- read_csv("data/technique-lookup.csv")
 
 # colour palette ----------------------------------------------------------
 
