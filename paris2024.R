@@ -120,6 +120,38 @@ par_plot <- df_par %>%
         legend.position = "none") +
   scale_fill_manual(values = c(paris_pink, paris_blue))
 
+# look at the same by winning technique
+df_par_win <- df_win %>% 
+  left_join(lookup) %>% 
+  summarise(count = sum(count, na.rm = TRUE), 
+            .by = c(technique, tech_type)) %>% 
+  arrange(-count) %>% 
+  mutate(cum_sum = cumsum(count), 
+         cum_perc = cum_sum/sum(count, na.rm = TRUE), 
+         id = row_number())
+
+# plot the data
+coeff_win <- 1/max(df_par_win$count)
+
+par_plot <- df_par_win %>% 
+  left_join(lookup) %>% 
+  filter(cum_perc <= 0.9) %>% 
+  ggplot(aes(x = reorder(disp_name, -id), fill = tech_type)) +
+  geom_bar(aes(y = count), 
+           stat = "identity") +
+  scale_y_continuous(name = "Instances of technique", 
+                     sec.axis = sec_axis(trans = ~.*coeff_win, name = "", labels = scales::percent)) +
+  geom_line(aes(y = cum_perc/coeff_win), 
+            group = 1,
+            linetype = "dashed", 
+            col = paris_blue, 
+            linewidth = 1) +
+  coord_flip() + 
+  lm_theme() + 
+  theme(axis.title.y = element_blank(), 
+        legend.position = "none") +
+  scale_fill_manual(values = c(paris_gold, paris_blue, paris_lightblue))
+
 # most popular (non-penalty) technique by class ---------------------------
 
 df_tw <- df_win %>% 
