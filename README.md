@@ -20,10 +20,10 @@ Only the -48s, -81s and +100s managed to keep their shido rate below 60%. By con
 
 # So did anyone actually win a contest with a score?
 
-Seoi nage lead the way for contest-winning techniques, 8% of contests were won with a Seoi nage. Juji Gatame was the only Ne Waza representative in the top 5. Only 3 contests were won with O Goshi.
+Seoi nage lead the way for contest-winning techniques, 8% of (non HSM) contests were won with a Seoi nage. Juji Gatame was the only technique flying the flag for Ne Waza in the top 5. Only 3 contests were won with my personal favourite, O Goshi.
 
 ![](charts/win_pareto.png)
 
-Most contests were won with a Tachi Waza score, just under 60% in the -70s, but 60% or higher in every other category. Every single contest in the -100s was won in Tachi Waza.
+Most (non-HSM) contests were won with a Tachi Waza score, just under 60% in the -70s, but 60% or higher in every other category. Every single contest in the -100s, which wasn't decided by penalties, was won in Tachi Waza.
 
 ![](charts/win_doughnuts.png)
