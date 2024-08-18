@@ -190,6 +190,6 @@ tachi_waza_plot <- df_tw %>%
   geom_text(data = df_tw %>% filter(tech_type == "T"), 
             aes(label = paste0(round(100*perc_tech, 1), "%"),
                 x = 2, y = 0), 
-            color = paris_blue) + 
+            color = paris_lightblue) + 
   theme(legend.position = "none") +
   labs(caption = "Note: FSG excluded")
