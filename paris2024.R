@@ -77,12 +77,12 @@ shido_plot <- df_pen %>%
   coord_polar(theta = "y") + 
   xlim(c(2, 4)) + 
   facet_wrap(~class, nrow = 2) + 
-  scale_fill_manual(values = c(paris_pink, paris_blue)) + 
+  scale_fill_manual(values = c(paris_blue, paris_pink)) + 
   theme_void() +
   geom_text(data = df_pen %>% filter(shido == "Y"), 
             aes(label = paste0(round(100*perc_shido, 1), "%"),
                 x = 2, y = 0), 
-            color = paris_blue) + 
+            color = paris_pink) + 
   theme(legend.position = "none",
         title = element_text(color = paris_blue, face = "bold"))
 
