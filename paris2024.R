@@ -4,7 +4,6 @@
 
 library(tidyverse)
 library(ggtext)
-library(cowplot)
 
 # data in -----------------------------------------------------------------
 
@@ -99,26 +98,30 @@ df_par <- df %>%
          id = row_number())
 
 # plot the data
-coeff <- 1/max(df_par$count)
+coeff <- max(df_par$count)
 
 par_plot <- df_par %>% 
   left_join(lookup, by = "technique") %>% 
   filter(cum_perc <= 0.9) %>% 
   ggplot(aes(x = reorder(disp_name, -id), fill = shido)) +
-  geom_bar(aes(y = count), 
-           stat = "identity") +
   scale_y_continuous(name = "Instances of technique", 
-                     sec.axis = sec_axis(trans = ~.*coeff, name = "", labels = scales::percent)) +
-  geom_line(aes(y = cum_perc/coeff), 
+                     labels = scales::percent, 
+                     sec.axis = sec_axis(trans = ~.*coeff, name = "")) +
+  geom_bar(aes(y = count/coeff),
+           stat = "identity") +
+  geom_line(aes(y = cum_perc), 
             group = 1,
             linetype = "dashed", 
-            col = paris_gold, 
+            col = "black", 
             linewidth = 1) +
   coord_flip() + 
   lm_theme() + 
   theme(axis.title.y = element_blank(), 
         legend.position = "none") +
-  scale_fill_manual(values = c(paris_pink, paris_blue))
+  scale_fill_manual(values = c(paris_blue, paris_pink)) +
+  labs(title = "Are there too many penalties in Judo?", 
+       subtitle = "2/3 of 'techniques' at Paris 2024 were penalties", 
+       caption = "Source: https://olympics.com/en/paris-2024/reports/judo - top 90% shown")
 
 # look at the same by winning technique
 df_par_win <- df_win %>% 
@@ -131,26 +134,30 @@ df_par_win <- df_win %>%
          id = row_number())
 
 # plot the data
-coeff_win <- 1/max(df_par_win$count)
+coeff_win <- max(df_par_win$count)
 
-par_plot <- df_par_win %>% 
+par_plot_win <- df_par_win %>% 
   left_join(lookup) %>% 
   filter(cum_perc <= 0.9) %>% 
   ggplot(aes(x = reorder(disp_name, -id), fill = tech_type)) +
-  geom_bar(aes(y = count), 
-           stat = "identity") +
   scale_y_continuous(name = "Instances of technique", 
-                     sec.axis = sec_axis(trans = ~.*coeff_win, name = "", labels = scales::percent)) +
-  geom_line(aes(y = cum_perc/coeff_win), 
+                     labels = scales::percent,
+                     sec.axis = sec_axis(trans = ~.*coeff_win, name = "")) +
+  geom_bar(aes(y = count/coeff_win), 
+           stat = "identity") +
+  geom_line(aes(y = cum_perc), 
             group = 1,
             linetype = "dashed", 
-            col = paris_blue, 
+            col = "black", 
             linewidth = 1) +
   coord_flip() + 
   lm_theme() + 
   theme(axis.title.y = element_blank(), 
         legend.position = "none") +
-  scale_fill_manual(values = c(paris_gold, paris_blue, paris_lightblue))
+  scale_fill_manual(values = c(paris_gold, paris_blue, paris_lightblue)) +
+  labs(title = "So did anyone actually throw anyone?",
+       subtitle = "Seoi Nage and Juji Gatame were the top contest winning techniques", 
+       caption = "Source: https://olympics.com/en/paris-2024/reports/judo - top 90% shown")
 
 # most popular (non-penalty) technique by class ---------------------------
 
