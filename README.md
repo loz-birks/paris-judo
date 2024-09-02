@@ -14,7 +14,7 @@ Approximately 2/3 of all 'techniques' recorded during the event were penalties, 
 
 ![](charts/tech_pareto.png)
 
-Only the -48s, -81s and +100s managed to keep their shido rate below 60%. By contrast, more than 3 out of every 4 'technique' was a penalty in the u73s and u90s.
+Only the -48s, -81s and +100s managed to keep their shido rate below 60%. By contrast, more than 3 out of every 4 'technique' in the u73s and u90s was a penalty.
 
 ![](charts/tech_doughnuts.png)
 
